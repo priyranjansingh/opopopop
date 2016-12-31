@@ -1,0 +1,68 @@
+<div class="header-banner">
+        <div class="banner has-banner " style="background-image: url(./assets/images/banner-single-album.jpg);">
+            <div class="overlay-banner-img"></div>
+            <div class="container">
+                <h1 class="title-page">Pricing </h1>
+                <div class="breadcrumb-wrap">
+                    <nav class="breadcrumb-trail breadcrumbs">
+                        <ul class="trail-items">
+                            <li class="trail-item trail-begin">
+                                <a href="#"><span>Home</span></a>
+                            </li>
+                            <li class="trail-item trail-end">
+                                <span>Pricing</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main-container" class="main-container">
+        <div class="site-content-inner">
+            <div class="container content">
+	<div class="row">
+		<!-- Pricing -->
+		<div class="col-md-3" ng-repeat="plan in plan_list">
+			<div class="pricing {{plan.plan_duration_type=='year'?'pricing-active':''}}  hover-effect">
+				<div class="pricing-head {{plan.plan_duration_type=='year'?'pricing-head-active':''}}">
+					<h3>{{plan.plan_name}} 
+					</h3>
+					<h4><i>$</i><i>{{plan.plan_price}}</i>
+					<span>
+					Per {{plan.plan_duration_type|capitalize}} </span>
+					</h4>
+				</div>
+				<ul class="pricing-content list-unstyled">
+					<li>
+						At vero eos
+					</li>
+					<li>
+						No Support
+					</li>
+					<li>
+						Fusce condimentum
+					</li>
+					<li>
+						Ut non libero
+					</li>
+					<li>
+						Consecte adiping elit
+					</li>
+				</ul>
+				<div  class="pricing-footer">
+					<p>
+                                               {{plan.plan_desc}} 
+					</p>
+                                        
+                                        <a ng-if="is_paid == 0"  href="javascript:void(0)" ng-disabled="(user_last_transaction !== null)?((user_last_transaction.plan_id==plan.id)?true:false):false" ng-click="PlanDetail(plan.id)" class="btn yellow-crusta">{{angular.isUndefined(user_last_transaction) || user_last_transaction === null  ? 'Select' :(user_last_transaction.plan_id==plan.id?'Pending':'Select') }}</a>
+				        <a ng-if="is_paid == 1"  href="javascript:void(0)" ng-disabled="user_last_plan.plan_id == plan.id" ng-click="PlanDetail(plan.id)" class="btn yellow-crusta">{{user_last_plan.plan_id == plan.id? 'Current Plan' : 'Select'}}</a>
+                                </div>
+			</div>
+		</div>
+		
+		<!--//End Pricing -->
+	</div>
+</div>
+        </div>
+    </div>

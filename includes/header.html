@@ -1,0 +1,30 @@
+<div class="main-header">
+    <div class="main-top">
+        <div class="row">
+            <div class="col-md-9" ng-controller="HeaderController">
+                <nav id="primary-navigation" class="site-navigation">
+                    <ul id="main-menu" class="main-nav main-menu">
+                        <li ng-class="isActive('/about')" >
+                            <a href="#/about">How We Work</a>                            
+                        </li>
+                        <li><a href="javascript:void(0)">Difference</a></li> 
+                        <li><a href="javascript:void(0)">Material</a></li> 
+                        <li  ng-class="isActive('/register')" ng-hide="currentUserSignedIn"><a href="#/register">Sign up /Join</a></li> 
+                        <li  ng-class="isActive('/login')" ng-hide="currentUserSignedIn"><a href="#/login" >Log in</a></li>
+                        <li  ng-class="isActive('/login')" ng-hide="currentUserSignedIn"><a href="javascript:void(0)" >Store</a></li>
+                        <li  ng-class="isActive('/profile')" ng-hide="!currentUserSignedIn"><a href="#/profile">My Profile</a></li>
+                        <li  ng-class="isActive('/plans')" ng-hide="!currentUserSignedIn"><a href="#/plans">Plans</a></li>
+                        <li  ng-class="isActive('/music')" ng-hide="!currentUserSignedIn"><a href="#/music">Music</a></li>
+                        <li  ng-class="isActive('/videos')" ng-hide="!currentUserSignedIn"><a href="#/videos">Videos</a></li>
+                        <li ng-class="isActive('/logout')" ng-hide="!currentUserSignedIn"><a href="#/logout" >Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-3">
+                <div class="logo">
+                    <a href="#/"><img src="./assets/images/logo.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

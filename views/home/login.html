@@ -1,0 +1,58 @@
+<div id="main-container" class="main-container" style="padding:60px 0 90px;">
+    <div class="site-content-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="section-title-description-block type-line-width line-bottom text-center wow fadeInUp" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
+                        <h3 class="sub-title-block" data-font-size="" data-color="">Login</h3>
+                        <p class="desc-block">Please provide the login credentials below. </p>
+                    </div>
+                </div>
+            </div>
+            <form name="login_form" ng-submit="loginUser(login_form.$valid)"   method="post" class="wpcf7-form wow fadeInUp" data-wow-delay="0.6s" novalidate style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
+                <div class="born-contact-form row">
+                 <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="email" ng-model="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Email *" type="email"  required>
+                                    <span style="color:red" ng-show="(login_form.email.$dirty || login_form.email.$touched) && login_form.email.$invalid">
+                                        <span ng-show="login_form.email.$error.required">Email is required.</span>
+                                        <span ng-show="login_form.email.$error.email">Invalid email address.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">    
+                                <div class="wpcf7-form-control-wrap email">
+                                    <input name="password" ng-model="password" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Password *" type="password" required>
+                                    <span style="color:red" ng-show="login_form.password.$touched && login_form.password.$invalid">
+                                        <span ng-show="login_form.password.$error.required">Password is required.</span>
+                                    </span>
+                                </div>
+                            </div>    
+                        </div>    
+                    </div>
+
+                    <div class="born-contact-submit col-sm-12">
+                        <input value="Submit" class="wpcf7-form-control wpcf7-submit born-button" type="submit" ng-disabled="(login_form.email.$invalid || login_form.password.$invalid)">
+                    </div>
+                    <div class="col-sm-12 text-center">
+
+                        <div class="container">
+                            <a href="#/forgotpassword">Forgot my password</a>
+                        </div>
+
+
+
+                        <span class="blt-register-footer">Don't have an account? <a href="#/register">Sign Up</a></span>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>

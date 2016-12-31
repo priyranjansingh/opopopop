@@ -1,0 +1,600 @@
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Change Password</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <span style="color:green" ng-show='password_changed_status'>Password Changed Successfully</span>
+        <form name="change_password_form" ng-submit="$ctrl.changePassword(change_password_form.$valid)"   method="post" class="wpcf7-form"  novalidate style="visibility: visible;">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="password" ng-model="$ctrl.password" id="password" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="New Password *" type="password"  required ng-minlength="6" ng-maxlength="12">
+                                     <span style="color:red" ng-show="change_password_form.password.$touched && change_password_form.password.$invalid">
+                                        <span ng-show="change_password_form.password.$error.required">New Password is required.</span>
+                                        <span ng-show="change_password_form.password.$error.minlength">New Password length must be of 6-12 character.</span>
+                                        <span ng-show="change_password_form.password.$error.maxlength">New Password length must be of 6-12 character.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                     <div class="row">
+                        <div class="col-sm-12">
+                             <div class="form-group">
+                                <div class="wpcf7-form-control-wrap email">
+                                    <input name="confirm_password" ng-model="$ctrl.confirm_password" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Confirm Password *" type="password" required pw-check='password'>
+                                    <span style="color:red" ng-show="change_password_form.confirm_password.$touched && change_password_form.confirm_password.$invalid">
+                                        <span ng-show="change_password_form.confirm_password.$error.required">Confirm Password is required.</span>
+                                        <span ng-show="!change_password_form.confirm_password.$error.required && change_password_form.confirm_password.$error.pwmatch">Password must match.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="born-contact-submit col-sm-12">
+                        <input value="Submit" class="wpcf7-form-control wpcf7-submit born-button" type="submit" ng-disabled="(change_password_form.password.$invalid || change_password_form.confirm_password.$invalid)">
+                    </div>
+            </form>      
+    </div>
+    <div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.ok()">Close</button>
+    </div>
+</script>
+<div class="header-banner">
+    <div class="banner has-banner " style="background-image: url(./assets/images/banner-about.jpg);">
+        <div class=""></div>
+        <div class="main-bnr container">
+            <div class="media">
+                
+                <div class="media-body">
+                    <h1>{{first_name}} {{last_name}}</h1>
+                    <div class="pull-left margin-right-50">
+                        <p><i class="fa fa-microphone"></i> Singer </p>
+                        <p><i class="fa fa-map-marker"></i> London, England</p>
+                    </div>
+                    <div class="pull-left">
+                        <p><i class="fa fa-inbox"></i> 2000 Downloads  </p>
+                        <p><i class="fa fa-list"></i> 20 Queued</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="flowers"><span> Email: {{email}}</span> </div>
+
+                    <!-- Btn --> 
+                    <a href="#/payment_history"  class="btn"><i class="fa fa-user-plus"></i>Payment History</a> <a href="javascript:void(0)" ng-click="open()"  class="btn"><i class="fa fa-key"></i>Change Password</a> <a href="#." class="btn"><i class="fa fa-pencil"></i>Edit Profile</a> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="main-container" class="main-container page-blog">
+    <div class="site-content-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+                    <div id="horizontalTab">
+                        <ul class="resp-tabs-list">
+                            <li class="active resp-tab-item resp-tab-active"><a data-toggle="tab" href="#home">Downloded</a></li>
+                            <li class="resp-tab-item"><a data-toggle="tab" href="#menu1">Queue</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                 <div class="container-fluid song-list-table profile-page-table">
+                        
+                        <div class="row row-head">
+                        			<div class="col-sm-1 col">
+                                    &nbsp;
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Date
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Song Name
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Artist Name
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    BPM
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    Key
+                                    </div>                                    
+                                    <div class="col-sm-3 col">
+                                    Action
+                                    </div>
+                            	
+                        </div>
+                        <div class="row row-body">
+                        <div class="container-fluid">
+                        <div class="row row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121" >
+                <i class="fa fa-glass"> </i>
+            </div>
+            </div>
+                                    
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"> </i></a> </li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"> </i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+        
+                                    </div>
+                                    </div>
+                        <div class="row  row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121">
+                <i class="fa fa-glass"></i>
+            </div>
+                                   </div>
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"></i></a></li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"></i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+                                    </div>
+                                    </div>
+                                    <div class="row row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121" >
+                <i class="fa fa-glass"> </i>
+            </div>
+            </div>
+                                    
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"> </i></a> </li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"> </i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+        
+                                    </div>
+                                    </div>
+                        <div class="row  row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121">
+                <i class="fa fa-glass"></i>
+            </div>
+                                   </div>
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"></i></a></li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"></i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+                                    </div>
+                                    </div>
+                                    <div class="row row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121" >
+                <i class="fa fa-glass"> </i>
+            </div>
+            </div>
+                                    
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"> </i></a> </li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"> </i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+        
+                                    </div>
+                                    </div>
+                        <div class="row  row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121">
+                <i class="fa fa-glass"></i>
+            </div>
+                                   </div>
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"></i></a></li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"></i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+                                    </div>
+                                    </div>
+                        </div>
+                        </div>            
+                        </div>
+    
+     
+  <div class="music-pagination">
+                                <ul class="page-numbers">
+                                    <li><span class="page-numbers current">1</span></li>
+                                    <li><a class="page-numbers" href="404-page.html">2</a></li>
+                                    <li><a class="page-numbers" href="404-page.html">3</a></li>
+                                    <li><a class="page-numbers" href="404-page.html">4</a></li>
+                                    <li>
+                                        <a class="next page-numbers" href="404-page.html"><span><i class="fa fa-angle-left"></i></span></a>
+                                        <a class="prev page-numbers" href="404-page.html"><span><i class="fa fa-angle-right"></i></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <div class="container-fluid song-list-table profile-page-table">
+                        
+                        <div class="row row-head">
+                        			<div class="col-sm-1 col">
+                                    &nbsp;
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Date
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Song Name
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Artist Name
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    BPM
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    Key
+                                    </div>                                    
+                                    <div class="col-sm-3 col">
+                                    Action
+                                    </div>
+                            	
+                        </div>
+                        <div class="row row-body">
+                        <div class="container-fluid">
+                        <div class="row row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121" >
+                <i class="fa fa-glass"> </i>
+            </div>
+            </div>
+                                    
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"> </i></a> </li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"> </i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+        
+                                    </div>
+                                    </div>
+                        <div class="row  row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121">
+                <i class="fa fa-glass"></i>
+            </div>
+                                   </div>
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"></i></a></li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"></i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+                                    </div>
+                                    </div>
+                                    <div class="row row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121" >
+                <i class="fa fa-glass"> </i>
+            </div>
+            </div>
+                                    
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"> </i></a> </li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"> </i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+        
+                                    </div>
+                                    </div>
+                        <div class="row  row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121">
+                <i class="fa fa-glass"></i>
+            </div>
+                                   </div>
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"></i></a></li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"></i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+                                    </div>
+                                    </div>
+                                    <div class="row row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121" >
+                <i class="fa fa-glass"> </i>
+            </div>
+            </div>
+                                    
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"> </i></a> </li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"> </i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+        
+                                    </div>
+                                    </div>
+                        <div class="row  row-table">
+                        			<div class="col-sm-1 col">
+                                       <div class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121">
+                <i class="fa fa-glass"></i>
+            </div>
+                                   </div>
+                                    <div class="col-sm-2 col">
+                                      Dec 3 2016
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Wake &amp; Bake
+                                    </div>
+                                    <div class="col-sm-2 col">
+                                    Mickey Shiloh
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    9A
+                                    </div>
+                                    <div class="col-sm-1 col">
+                                    98
+                                    </div>
+                                    
+                                    <div class="col-sm-3 col">
+                                    <ul class="list-inline">
+       		<li><a href="#"><i class="fa fa-bell"></i></a></li>
+            <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+            <li><a href="#"><i class="fa fa-apple"></i></a></li>            
+            <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+            <li><a href="#"><i class="fa fa-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+            <li><a href="#"><i class="fa fa-star"></i></a></li>
+        </ul>
+                                    </div>
+                                    </div>
+                        </div>
+                        </div>            
+                        </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

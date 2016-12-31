@@ -1,0 +1,160 @@
+<div class="header-banner">
+    <div class="banner has-banner " style="background-image: url(assets/images/banner-contact.jpg);">
+        <div class="overlay-banner-img"></div>
+        <div class="container">
+            <h1 class="title-page">Payment</h1>
+            <div class="breadcrumb-wrap">
+                <nav class="breadcrumb-trail breadcrumbs">
+                    <ul class="trail-items">
+                        <li class="trail-item trail-begin">
+                            <a href="#"><span>Home</span></a>
+                        </li>
+                        <li class="trail-item trail-end">
+                            <span>Contact</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="main-container" class="main-container" style="padding:60px 0 90px;">
+    <div class="site-content-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="section-title-description-block type-line-width line-bottom text-center wow fadeInUp"
+                         data-wow-delay="0.6s">
+                        <h3 class="sub-title-block" data-font-size="" data-color="">Choose Payment Method</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="born-contact-form row">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span style='color:#cc3d3d'>Your have choosen  : {{plan_detail.plan_name}}</span><br>
+                        <span style='color:#cc3d3d'>Plan Cost   : $ {{plan_detail.plan_price}}</span><br>
+                        <span ng-show="coupon_code_message_flag" style='color:#cc3d3d'>{{coupon_code_message}}</span>
+                    </div>
+                </div>    
+                <form name="coupon_form"  ng-submit="applyCoupon(coupon_form.$valid)" method="post" class="wpcf7-form" novalidate>
+                   <div ng-if="processing" us-spinner="{radius:30, width:8, length: 16,color: 'red'}"></div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input ng-model="coupon_code" name="coupon_code"  value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Enter Coupon Code *" type="text" required >
+                                    <span style="color:red" ng-show="coupon_form.coupon_code.$touched && coupon_form.coupon_code.$invalid">
+                                        <span ng-show="coupon_form.coupon_code.$error.required">Coupon Code is required.</span>
+                                    </span>
+                                </div>
+                            </div>    
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input value="Apply Coupon" ng-disabled="(coupon_form.coupon_code.$invalid)" class="wpcf7-form-control wpcf7-submit born-button" type="submit">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="radio">
+                                <label style="font-size: 1em">
+                                    <input ng-model="payment_type" name="payment_type"  value="credit_card"  type="radio" >
+                                    <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                    Credit Card
+                                </label>
+                                <label style="font-size: 1em">
+                                    <input ng-model="payment_type" name="payment_type"  value="paypal"  type="radio" >
+                                    <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                    Paypal
+                                </label>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+
+                <div ng-show="payment_type == 'credit_card'">
+                    <form name="checkoutForm" stripe-form="stripeCallback" ng-submit="onSubmit()" data-abide class="wpcf7-form" novalidate="novalidate">
+                       <div ng-if="processing" us-spinner="{radius:30, width:8, length: 16,color: 'red'}"></div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <div class="wpcf7-form-control-wrap Name">
+                                            <input  ng-model="number" name="number" payments-format="card" payments-validate="card"
+                                                    placeholder="Card Number  (xxxx xxxx xxxx xxxx)" type="text" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" />
+                                            <span style="color:red" ng-show="checkoutForm.number.$invalid">
+                                                <span ng-show="checkoutForm.number.$invalid">Invalid card number.</span>
+                                            </span>
+                                        </div>
+                                    </div>    
+                                </div>    
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <div class="wpcf7-form-control-wrap Name">
+                                            <input ng-model="expiry" name="expiry" payments-format="expiry" payments-validate="expiry"
+                                                   placeholder="Expiry (MM/YY)" type="text" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" />
+                                            <span style="color:red" ng-show="checkoutForm.expiry.$invalid">
+                                                <span ng-show="checkoutForm.expiry.$invalid">Invalid date.</span>
+                                            </span>
+                                        </div>
+                                    </div>    
+                                </div>    
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="wpcf7-form-control-wrap">
+                                        <input ng-model="cvc" name="cvc" payments-format="cvc" payments-validate="cvc"
+                                               placeholder="CVC" type="text"  class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"  />
+                                        <span style="color:red" ng-show="checkoutForm.cvc.$invalid">
+                                            <span ng-show="checkoutForm.cvc.$invalid">Invalid CVC.</span>
+                                        </span>
+                                    </div>
+                                </div>    
+                            </div>
+
+                        </div> 
+
+                        <alert style="color:red" ng-if="stripeError" type="'alert'" close="hideAlerts()">
+                            Stripe returned an error: {{stripeError}}
+                        </alert>
+
+                        <alert style="color:green" ng-if="stripeToken" close="hideAlerts()">
+                            Stripe successfully acquired! Please wait for a while.
+                        </alert>
+                        <div class="born-contact-submit col-sm-12">
+                            <button type="submit"  ng-disabled="checkoutForm.$invalid" class="wpcf7-form-control wpcf7-submit born-button">Pay Now</button>
+                        </div>    
+
+                    </form>
+                </div>   
+
+
+                <div ng-show="payment_type == 'paypal'">
+                    <div class="born-contact-submit col-sm-12">
+                        <form id="paypal" name='paypal'  action="/" method="post">
+                            <input value="Pay Now" name="paypal_submit" ng-click='paypalSubmit()'  class="wpcf7-form-control wpcf7-submit born-button" type="button">
+                        </form>  
+                    </div>    
+                </div>    
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>

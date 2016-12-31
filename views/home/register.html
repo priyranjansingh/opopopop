@@ -1,0 +1,240 @@
+<div id="main-container" class="main-container" style="padding:60px 0 90px;">
+    <div class="site-content-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="section-title-description-block type-line-width line-bottom text-center wow fadeInUp" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
+                        <h3 class="sub-title-block" data-font-size="" data-color="">How to register</h3>
+                        <p class="desc-block">All participants must fill out the form below. An email confirming your registration will be sent to you once the process is complete. </p>
+                    </div>
+                </div>
+            </div>
+            <form name="register_form" ng-submit="registerUser(register_form.$valid)"  method="post" class="wpcf7-form wow fadeInUp" data-wow-delay="0.6s" novalidate style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
+               
+                <div class="born-contact-form row">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="first_name" ng-model="first_name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="First Name *" type="text" required >
+                                    <span style="color:red" ng-show="(register_form.first_name.$dirty || register_form.first_name.$touched) && register_form.first_name.$invalid">
+                                        <span ng-show="register_form.first_name.$error.required">First Name is required.</span>
+                                    </span>
+                                </div>
+                            </div>    
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="last_name" ng-model="last_name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Last Name *" type="text" required>
+                                    <span style="color:red" ng-show="register_form.last_name.$touched && register_form.last_name.$invalid">
+                                        <span ng-show="register_form.last_name.$error.required">Last Name is required.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="dj_name" ng-model="dj_name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="DJ Name *" type="text"  required>
+                                    <span style="color:red" ng-show="(register_form.dj_name.$dirty || register_form.dj_name.$touched) && register_form.dj_name.$invalid">
+                                        <span ng-show="register_form.dj_name.$error.required">DJ Name is required.</span>
+                                    </span>
+                                </div>
+                            </div>    
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="dj_company_name" ng-model="dj_company_name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="DJ Company Name" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                     <div class="checkbox">
+                                        <label>
+                                            Type of DJ
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label ng-repeat="dtype in djtype">
+                                            <input ng-model="dtype.selected" type="checkbox"  value="{{dtype.id}}">
+                                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                            {{dtype.name}}&nbsp;&nbsp;
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="dj_year_count" ng-model="dj_year_count" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="How many times you DJ for others (Paid) ?" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> 
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap email">
+                                    <input name="email" ng-model="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Email *" type="email" required unique-email>
+                                    <span style="color:red" ng-show="(register_form.email.$dirty || register_form.email.$touched) && register_form.email.$invalid">
+                                        <span ng-show="register_form.email.$error.required">Email is required.</span>
+                                        <span ng-show="register_form.email.$error.email">Invalid email address.</span>
+                                        <span ng-show="register_form.email.$error.unique">Email already in use.</span>
+                                    </span>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap email">
+                                    <input name="mobile" ng-model="mobile" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Mobile *" type="text" required>
+                                    <span style="color:red" ng-show="register_form.mobile.$touched && register_form.mobile.$invalid">
+                                        <span ng-show="register_form.mobile.$error.required">Mobile is required.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <textarea name="address" ng-model="address" class="wpcf7-form-control wpcf7-textarea"  cols="40"
+                                              rows="1" aria-invalid="false" placeholder="Address *" required></textarea>
+                                    <span style="color:red" ng-show="register_form.address.$touched && register_form.address.$invalid">
+                                        <span ng-show="register_form.address.$error.required">Address is required.</span>
+                                    </span>
+                                </div>
+                            </div>    
+
+                        </div>
+                    </div> 
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="street" ng-model="street" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Street " type="text" >
+                                </div>
+                            </div>    
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <input name="zip" ng-model="zip" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Zip *" type="text" required>
+                                    <span style="color:red" ng-show="register_form.zip.$touched && register_form.zip.$invalid">
+                                        <span ng-show="register_form.zip.$error.required">Zip is required.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <select name='country' ng-model="country"                
+                                            ng-options="obj.id as obj.name for obj in countries"
+                                            ng-change="getCountryStates()"
+                                            class="form-control" 
+                                            id="country" required>
+                                        <option value=''>Choose Country *</option>
+                                    </select>   
+                                    <span style="color:red" ng-show="register_form.country.$touched && register_form.country.$invalid">
+                                        <span ng-show="register_form.country.$error.required">Country is required.</span>
+                                    </span>
+                                </div>
+                            </div>    
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap Name">
+                                    <select name='state' ng-model="state" 
+                                            ng-options="x.id as x.name for x in states"
+                                            class="form-control"
+                                            id="state" required>
+                                        <option value="">Choose State *</option>
+                                    </select>    
+                                    <span style="color:red" ng-show="(register_form.state.$dirty || register_form.state.$touched) && register_form.state.$invalid">
+                                        <span ng-show="register_form.state.$error.required">State is required.</span>
+                                    </span>
+                                </div>
+                            </div>    
+                        </div>
+                    </div> 
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap email">
+                                    <input name="password" ng-model="password" id="password"  value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Password *" type="password" required ng-minlength="6" ng-maxlength="12">
+                                    <span style="color:red" ng-show="register_form.password.$touched && register_form.password.$invalid">
+                                        <span ng-show="register_form.password.$error.required">Password is required.</span>
+                                        <span ng-show="register_form.password.$error.minlength">Password length must be of 6-12 character.</span>
+                                        <span ng-show="register_form.password.$error.maxlength">Password length must be of 6-12 character.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="wpcf7-form-control-wrap email">
+                                    <input name="confirm_password" ng-model="confirm_password" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Confirm Password *" type="password" required pw-check='password'>
+                                    <span style="color:red" ng-show="register_form.confirm_password.$touched && register_form.confirm_password.$invalid">
+                                        <span ng-show="register_form.confirm_password.$error.required">Confirm Password is required.</span>
+                                        <span ng-show="!register_form.confirm_password.$error.required && register_form.confirm_password.$error.pwmatch">Password must match.</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                    <div class="born-contact-submit col-sm-12">
+                       <div ng-if="processing" us-spinner="{radius:20, width:8, length: 16,color: 'red'}"></div>
+                        <input value="Submit" class="wpcf7-form-control wpcf7-submit born-button" type="submit" ng-disabled="(register_form.first_name.$invalid || register_form.last_name.$invalid || register_form.dj_name.$invalid || register_form.address.$invalid || register_form.zip.$invalid || register_form.country.$invalid || register_form.state.$invalid || register_form.email.$invalid || register_form.mobile.$invalid || register_form.password.$invalid || register_form.confirm_password.$invalid)">
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <span class="blt-login-footer">Already have an account? <a href="#/login">Login</a></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

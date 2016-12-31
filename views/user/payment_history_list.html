@@ -1,0 +1,77 @@
+<div class="header-banner">
+    <div class="banner has-banner " style="background-image: url(./assets/images/banner-relate.jpg);">
+        <div class="overlay-banner-img"></div>
+        <div class="container">
+            <h1 class="title-page">PAYMENT<br/> HISTORY</h1>
+            <div class="breadcrumb-wrap">
+                <nav class="breadcrumb-trail breadcrumbs">
+                    <ul class="trail-items">
+                        <li class="trail-item trail-begin">
+                            <a href="#"><span>Home</span></a>
+                        </li>
+                        <li class="trail-item trail-end">
+                            <span>Payments</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div> 
+<div id="main-container" class="main-container page-blog">
+    <div class="site-content-inner">
+        <div class="container">
+            <div class="row">
+                <div id="primary" class="content-area blog-content-area col-xs-12">
+                    <div class="grid-category col-3 padding-top-zero">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="sidebar_title">Payment History</h2>
+                            </div>
+
+                            <div class="col-md-12">
+                                <table class="table table-striped" ng-if="totalItems>0">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Invoice</th>
+                                            <th>Transaction ID</th>
+                                            <th>Plan Name</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr  ng-repeat="transaction in payment_history_list">
+                                            <td> {{transaction.modified_date}}</td>        
+                                            <td>{{transaction.invoice}}</td>
+                                            <td>{{(transaction.transaction_id != NULL?transaction.transaction_id:'--' )}}</td>
+                                            <td>{{transaction.plan_name}}</td>
+                                            <td>${{transaction.amount}}</td>
+                                            <td>{{transaction.payment_status}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div ng-if="totalItems==0">
+                                    Sorry!! no items to show.
+                                </div>
+
+                            </div>
+                            <div class="col-md-12">  
+                                <div ng-if="processing" us-spinner="{radius:5, width:4, length: 16,color: 'red'}"></div>
+                            </div>
+                            <div class="col-md-12">  
+                                <div class="music-pagination" ng-show="show_pagination">
+                                    <ul items-per-page="itemPerPage" class="page-numbers pagination-sm" ng-change="pageChanged()" uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage"  previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+</div>

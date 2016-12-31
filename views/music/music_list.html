@@ -1,0 +1,128 @@
+<style>
+    .panel-group > .panel:first-child .panel-heading{border-radius: 0;}
+    .panel-heading{padding: 10px;background-color:#dd2121;}
+    .panel-heading a:hover,.panel-heading i:hover{color: #000;}
+    .music-pagination li:hover a, .music-pagination li span.current{background-color: #dd2121;}
+</style>
+<div class="header-banner">
+    <div class="banner has-banner " style="background-image: url(./assets/images/banner-relate.jpg);">
+        <div class="overlay-banner-img"></div>
+        <div class="container">
+            <h1 class="title-page">MUSIC<br/> RELEASES</h1>
+            <div class="breadcrumb-wrap">
+                <nav class="breadcrumb-trail breadcrumbs">
+                    <ul class="trail-items">
+                        <li class="trail-item trail-begin">
+                            <a href="#"><span>Home</span></a>
+                        </li>
+                        <li class="trail-item trail-end">
+                            <span>Releases</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div> 
+<div id="main-container" class="main-container page-blog">
+    <div class="site-content-inner">
+        <div class="container">
+          
+            <div class="row">
+                <div id="primary" class="content-area blog-content-area col-xs-12 col-sm-12 col-md-12">
+                    <div class="grid-category col-3 padding-top-zero">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="sidebar_title">Our Complete Music List</h2>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="container-fluid song-list-table">
+                                    <div class="row row-head">
+                                        <div class="col-sm-2 col">Date</div>
+                                        <div class="col-sm-3 col">Song Name</div>
+                                        <div class="col-sm-3 col">Artist Name</div>
+                                        <div class="col-sm-1 col">BPM</div>
+                                        <div class="col-sm-1 col">Key</div>                                    
+                                        <div class="col-sm-2 col">Action</div>
+                                    </div>
+                                    <div class="row row-body">
+                                        <div  class="panel-group" id="accordion" role="tablist">
+                                            <div ng-repeat="music in music_list" class="panel">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a ng-click="showDetails = !showDetails" role="button" >
+                                                            <i class="more-less glyphicon glyphicon-chevron-down"></i>
+                                                        </a>
+                                                        <div class="col-sm-2 col">{{music.original_song_detail.date_entered}}</div>
+                                                        <div class="col-sm-3 col">
+                                                            <a href="https://www.google.co.in">{{music.original_song_detail.song_name}}</a>
+                                                        </div>
+                                                        <div class="col-sm-3 col" class="myclass">{{music.original_song_detail.artist_name}}</div>
+                                                        <div class="col-sm-1 col">9A</div>
+                                                        <div class="col-sm-1 col">98</div>
+                                                        <div class="col-sm-2 col">
+                                                            <ul class="list-inline">
+                                                                <li><a href="#"><i class="fa fa-amazon"></i></a></li>
+                                                                <li><a href="#"><i class="fa fa-apple"></i></a></li>            
+                                                            </ul>
+                                                        </div>
+                                                    </h4>
+                                                </div>
+                                                <div ng-show="showDetails"  role="tabpanel">
+                                                    <div class="panel-body">
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    Original Song: {{music.original_song_detail.song_name}}
+                                                                </div>
+                                                            </div>
+                                                            <div ng-repeat="remix in music.remix_songs_list" class="row row-table">
+                                                                <div class="col-sm-1 col">
+                                                                    <a href="javascript:void(0)"> 
+                                                                        <div ng-click="test(remix.file_name, remix.genre_folder_name, remix.subgenre_folder_name)" class="stec-layout-event-preview-left-icon text-center" style="background:#dd2121">
+                                                                            <i class="fa fa-play-circle"></i>
+                                                                        </div>
+                                                                    </a>   
+                                                                </div>
+                                                                <div class="col-sm-2 col">{{remix.date_entered}}</div>
+                                                                <div class="col-sm-3 col">{{remix.song_name}}</div>
+                                                                <div class="col-sm-2 col">Mickey Shiloh</div>
+                                                                <div class="col-sm-1 col">9A</div>
+                                                                <div class="col-sm-1 col">98</div>
+                                                                <div class="col-sm-2 col">
+                                                                    <ul class="list-inline">
+                                                                        <li><a href="#"><i class="fa fa-bell"></i></a></li>
+                                                                        <li><a href="#"><i class="fa fa-cloud-download"></i></a></li>
+                                                                        <li><a href="#"><i class="fa fa-plus"></i></a></li>
+                                                                        <li><a href="#"><i class="fa fa-share-alt"></i></a></li>            
+                                                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">  
+                                <div ng-if="processing" us-spinner="{radius:5, width:4, length: 16,color: 'red'}"></div>
+                            </div>
+                            <div class="col-md-12">  
+                                <div class="music-pagination" ng-show="show_pagination">
+                                    <ul items-per-page="itemPerPage" class="page-numbers pagination-sm" ng-change="pageChanged()" uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage"  previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
