@@ -7,11 +7,11 @@
                         <li ng-class="isActive('/about')" >
                             <a href="#/about">How We Work</a>                            
                         </li>
-                        <li><a href="javascript:void(0)">Difference</a></li> 
-                        <li><a href="javascript:void(0)">Material</a></li> 
+                        <li ng-class="isActive('/difference')"><a href="javascript:void(0)">Difference</a></li> 
+                        <li ng-class="isActive('/material')"><a href="javascript:void(0)">Material</a></li> 
                         <li  ng-class="isActive('/register')" ng-hide="currentUserSignedIn"><a href="#/register">Sign up /Join</a></li> 
                         <li  ng-class="isActive('/login')" ng-hide="currentUserSignedIn"><a href="#/login" >Log in</a></li>
-                        <li  ng-class="isActive('/login')" ng-hide="currentUserSignedIn"><a href="javascript:void(0)" >Store</a></li>
+                        <li  ng-class="isActive('/store')" ng-hide="currentUserSignedIn"><a href="javascript:void(0)" >Store</a></li>
                         <li  ng-class="isActive('/profile')" ng-hide="!currentUserSignedIn"><a href="#/profile">My Profile</a></li>
                         <li  ng-class="isActive('/plans')" ng-hide="!currentUserSignedIn"><a href="#/plans">Plans</a></li>
                         <li  ng-class="isActive('/music')" ng-hide="!currentUserSignedIn"><a href="#/music">Music</a></li>
